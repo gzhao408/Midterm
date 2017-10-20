@@ -26,7 +26,7 @@ contract Queue {
 	}
 
 	/* Add events */
-	event ejected(address buyer);
+	event Ejected(address buyer);
 
 	/* Add constructor */
 	function Queue () {
@@ -65,7 +65,7 @@ contract Queue {
 	 */
 	function checkTime() {
 		Buyer first = buyers[front % size];
-		if (first.timer == 0) {
+		if (now - first.timer >= timelimit) {
 			ejected(first.address);
 			dequeue();
 		}
@@ -86,8 +86,8 @@ contract Queue {
 		if (!empty()) {
 			back++;
 		}
-		buyers[back % size].address = Buyer({
-                address: msg.sender,
+		buyers[back % size] = Buyer({
+                address: addr,
                 timer: now,
                 });
 	}
