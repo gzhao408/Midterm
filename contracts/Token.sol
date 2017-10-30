@@ -9,5 +9,7 @@ import './interfaces/ERC20Interface.sol';
  */
 
 contract Token is ERC20Interface {
-	// YOUR CODE HERE
+	function totalSupply() constant returns (uint256 totalSupply)
+	function balanceOf(address _owner) constant returns (uint256 balance)
+	function transfer(address _to, uint256 _value) returns (bool)
 }
